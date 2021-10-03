@@ -1,0 +1,7 @@
+#!/bin/bash
+## Change the wallpaper
+WALLPAPERS_FOLDER="/Pictures/Backgrounds/Raw_Wallpapers/"
+DISPLAY_1="HDMI-A-0"
+DISPLAY_2="eDP"
+
+xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitor${DISPLAY_1}/workspace0/last-image --set $(echo ${HOME}/${WALLPAPERS_FOLDER}/$(ls ${HOME}/${WALLPAPERS_FOLDER} | shuf | head -n 1))
