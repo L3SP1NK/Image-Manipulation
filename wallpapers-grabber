@@ -52,7 +52,7 @@ function OPEN_FILE_MANAGER()
 						then
 							exit 0
 						else
-							echo "${RED}Unable to find a file manager!\nQuitting...${RESET_COLOR}"
+							echo "${RED}Unable to find a file manager!\nExiting...${RESET_COLOR}"
 							exit 1
 					fi
 			else
@@ -76,9 +76,9 @@ if [[ ${1} ]]
 					fi
 
 			else
-				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}${RESET_COLORS}"
+				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RESET_COLORS}"
 				exit 1
 		fi
 	else
-		echo -e "${RED}Please, provides a topics for your images (e.g. Cars)"
+		echo -e "${RED}Please, provides a topics for your images (e.g. Cars)\nExiting..."
 fi
