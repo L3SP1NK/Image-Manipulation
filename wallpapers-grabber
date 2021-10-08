@@ -22,9 +22,9 @@ SORT_OPTIONS="relevance" ## date_added relevance random views favorites toplist.
 QUERY="${1}"
 PAGE=$(shuf -i 1-2748 | head -n1) ## 2748 pages for "girl" in anime (02/08/2021).
 ## Turn categories on(1) or off(0).
-CATEGORY="010" ## 100/101/111*/etc (general/anime/people).
+CATEGORY="011" ## 100/101/111*/etc (general/anime/people).
 ## Turn purities on(1) or off(0) NSFW requires a valid API key.
-PURITY="110" ##100*/110/111/etc (sfw/sketchy/nsfw).
+PURITY="111" ##100/110/111/etc (sfw/sketchy/nsfw).
 
 ## Change input to URL format.
 QUERY="$(sed 's/#//g' <<<${QUERY})"
@@ -47,7 +47,7 @@ function OPEN_FILE_MANAGER()
 	read -s -t 3 OPEN
 		if [[ ${OPEN} == "y" ]]
 			then
-				exo-open --launch FileManager ${HOME}/Pictures/Backgrounds/Raw_Wallpapers 2>/dev/null
+				exo-open --launch FileManager ${HOME}/${WALLPAPERS_DIR} 2>/dev/null
 					if [[ ${?} -eq "0" ]]
 						then
 							exit 0
