@@ -16,13 +16,13 @@ BOLD="\e[1m"
 
 REQUIREMENTS="curl jq notify-send"
 
-WALLPAPERS_DIR="${HOME}/Pictures/Backgrounds/Raw_Wallpapers"
+WALLPAPERS_DIR=${2}
 MIN_RESOLUTION="1920x1080"
 SORT_OPTIONS="relevance" ## date_added relevance random views favorites toplist.
 QUERY="${1}"
 PAGE=$(shuf -i 1-2748 | head -n1) ## 2748 pages for "girl" in anime (02/08/2021).
 ## Turn categories on(1) or off(0).
-CATEGORY="011" ## 100/101/111*/etc (general/anime/people).
+CATEGORY="001" ## 100/101/111*/etc (general/anime/people).
 ## Turn purities on(1) or off(0) NSFW requires a valid API key.
 PURITY="111" ##100/110/111/etc (sfw/sketchy/nsfw).
 
@@ -60,7 +60,7 @@ function OPEN_FILE_MANAGER()
 		fi
 }
 
-if [[ ${1} ]]
+if [[ ${1} && ${2} ]]
 	then
 		which ${REQUIREMENTS} > /dev/null
 		if [[ ${?} -eq "0" ]]
