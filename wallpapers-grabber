@@ -1,12 +1,13 @@
 #!/bin/bash
-## Download wallpapers from
+## Download wallpapers from:
 ## - https://wallhaven.cc
+
 ## Heavily inspired by BugsWriter video's (https://www.youtube.com/watch?v=Ol3g0Rp0XkM)
+## See the wallhaven API configuration "https://wallhaven.cc/help/api"
 
 ## TODO:
-## - Remove the brighter ones?
 ## - Downloads images from more sites.
-## - Get the page number before shuf and download.
+## - Get the page number before shuf and download. (*1)
 
 RESET_COLOR="\e[0m"
 GREEN="\e[32m"
@@ -18,13 +19,13 @@ REQUIREMENTS="curl jq notify-send"
 
 WALLPAPERS_DIR=${2}
 MIN_RESOLUTION="1920x1080"
-SORT_OPTIONS="relevance" ## date_added relevance random views favorites toplist.
+SORT_OPTIONS="relevance" ## valid options are: "date_added" "relevance" "random" "views" "favorites" "toplist".
 QUERY="${1}"
-PAGE=$(shuf -i 1-2748 | head -n1) ## 2748 pages for "girl" in anime (02/08/2021).
+PAGE=$(shuf -i 1-9999 | head -n1) ## (*1)
 ## Turn categories on(1) or off(0).
-CATEGORY="001" ## 100/101/111*/etc (general/anime/people).
+CATEGORY="001" ## 100/101/111*/... (general/anime/people).
 ## Turn purities on(1) or off(0) NSFW requires a valid API key.
-PURITY="111" ##100/110/111/etc (sfw/sketchy/nsfw).
+PURITY="111" ##100/110/111/... (sfw/sketchy/nsfw).
 
 ## Change input to URL format.
 QUERY="$(sed 's/#//g' <<<${QUERY})"
