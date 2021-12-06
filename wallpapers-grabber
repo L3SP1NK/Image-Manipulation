@@ -77,7 +77,7 @@ if [[ ${1} && ${2} ]]
 					fi
 
 			else
-				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RCS}"
+				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RC}"
 				exit 1
 		fi
 	else
