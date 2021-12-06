@@ -11,13 +11,13 @@ GREEN="\e[32m"
 YELLOW="\e[33m"
 GREY="\e[37m"
 BOLD="\e[1m"
-RESET_COLOR="\e[0m"
+RC="\e[0m"
 
 if [[ ${1} ]]
 	then
 		PIC_FOLDER=${1}
 	else
-		echo -e "${RED}Please, specify a folder containing pictures!${RESET_COLOR}"
+		echo -e "${RED}Please, specify a folder containing pictures!${RC}"
 		exit 1
 fi
 
@@ -32,17 +32,17 @@ for FILE in $(ls ${PIC_FOLDER})
 		| sort -nr \
 		| head -n 1 \
 		| awk -F'[()]' '{print $2}')
-		echo -e "${BOLD}${BLUE}${PIC_FOLDER}/${FILE}:${RESET_COLOR} ${GREY}${VALUE}${RESET_COLOR}"
+		echo -e "${BOLD}${BLUE}${PIC_FOLDER}/${FILE}:${RC} ${GREY}${VALUE}${RC}"
 			if [[ ${VALUE} == ${FIND_COLOR} ]]
 				then
-					echo -e "${YELLOW}The picture ${BOLD}\e[4m${FILE}${RESET_COLOR}${YELLOW} mostly contain the white color.\nRemove it? (y/n)${RESET_COLOR}"
+					echo -e "${YELLOW}The picture ${BOLD}\e[4m${FILE}${RC}${YELLOW} mostly contain the white color.\nRemove it? (y/n)${RC}"
 					read REMOVE
 						case ${REMOVE} in
 							y|Y)
-								rm ${PIC_FOLDER}/${FILE} && echo -e "${GREEN}Picture ${FILE} removed!${RESET_COLOR}" || echo -e "${RED}Something went wrong!"
+								rm ${PIC_FOLDER}/${FILE} && echo -e "${GREEN}Picture ${FILE} removed!${RC}" || echo -e "${RED}Something went wrong!"
 								;;
 							n|N)
-								echo -e "${YELLOW}Skipping this file...${RESET_COLOR}"
+								echo -e "${YELLOW}Skipping this file...${RC}"
 								;;
 							*)
 								exit 1

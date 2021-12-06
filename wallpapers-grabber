@@ -9,7 +9,7 @@
 ## - Downloads images from more sites.
 ## - Get the page number before shuf and download. (*1)
 
-RESET_COLOR="\e[0m"
+RC="\e[0m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 RED="\e[31m"
@@ -35,16 +35,16 @@ mkdir -p ${WALLPAPERS_DIR}
 
 WALLHAVEN_URL="https://wallhaven.cc/api/v1/search?q=${QUERY}&categories=${CATEGORY}&purity=${PURITY}&sorting=${SORT_OPTIONS}&order=desc&page=${PAGE}"
 
-function WALLHAVEN_REQUEST()
+WALLHAVEN_REQUEST()
 {
 	curl -sf ${WALLHAVEN_URL}\
 	| jq '.' | grep -Eoh 'https:\/\/w\.wallhaven.cc\/full\/.*(jpg|png)\b'\
 	| xargs -l wget -nc -nv -P ${WALLPAPERS_DIR}
 }
 
-function OPEN_FILE_MANAGER()
+OPEN_FILE_MANAGER()
 {
-	echo -e "${YELLOW}Open the wallpaper directory? (N/y)${RESET_COLOR}"
+	echo -e "${YELLOW}Open the wallpaper directory? (N/y)${RC}"
 	read -s -t 3 OPEN
 		if [[ ${OPEN} == "y" ]]
 			then
@@ -53,7 +53,7 @@ function OPEN_FILE_MANAGER()
 						then
 							exit 0
 						else
-							echo "${RED}Unable to find a file manager!\nExiting...${RESET_COLOR}"
+							echo "${RED}Unable to find a file manager!\nExiting...${RC}"
 							exit 1
 					fi
 			else
@@ -66,18 +66,18 @@ if [[ ${1} && ${2} ]]
 		which ${REQUIREMENTS} > /dev/null
 		if [[ ${?} -eq "0" ]]
 			then
-				echo -e " 🔎 ${YELLOW}Searching for ${QUERY} wallpapers...${RESET_COLOR}"
+				echo -e " 🔎 ${YELLOW}Searching for ${QUERY} wallpapers...${RC}"
 				WALLHAVEN_REQUEST
 					if [[ ${?} -ne "0" ]]
 						then
-							echo -e "${RED}Page not found...${RESET_COLOR}"
+							echo -e "${RED}Page not found...${RC}"
 						else
 							notify-send " ✅ Wallpapers downloads finished! "
 							OPEN_FILE_MANAGER
 					fi
 
 			else
-				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RESET_COLORS}"
+				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RCS}"
 				exit 1
 		fi
 	else
