@@ -72,7 +72,7 @@ if [[ ${1} && ${2} ]]
 						then
 							echo -e "${RED}Page not found...${RC}"
 						else
-							notify-send " ✅ Wallpapers downloads finished! "
+							notify-send " ✅ Wallpapers downloads done! "
 							OPEN_FILE_MANAGER
 					fi
 
