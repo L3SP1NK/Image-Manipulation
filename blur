@@ -4,7 +4,7 @@
 BASE_IMAGES_PATH=${1}
 BLURRED_IMAGES_PATH=${2}
 
-if [[ ${1} && ${2} ]]
+if [[ ${BASE_IMAGES_PATH} && ${BLURRED_IMAGES_PATH} ]]
 	then
 		for IMAGES in $(ls ${BASE_IMAGES_PATH})
 		    do
