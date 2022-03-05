@@ -5,6 +5,7 @@
 ## - check if the RGB value is "+250" instead of "255".
 ## - "--no-prompt" switch (for removal).
 
+## Set colors.
 BLUE="\e[34m"
 RED="\e[31m"
 GREEN="\e[32m"
@@ -17,7 +18,7 @@ if [[ ${1} ]]
 	then
 		PIC_FOLDER=${1}
 	else
-		echo -e "${RED}Please, specify a folder containing pictures!${RC}"
+		echo -e "${WARN} Please, specify a folder containing pictures!"
 		exit 1
 fi
 
@@ -32,17 +33,17 @@ for FILE in $(ls ${PIC_FOLDER})
 		| sort -nr \
 		| head -n 1 \
 		| awk -F'[()]' '{print $2}')
-		echo -e "${BOLD}${BLUE}${PIC_FOLDER}/${FILE}:${RC} ${GREY}${VALUE}${RC}"
+		echo -e "${INFO} ${PIC_FOLDER}/${FILE}: ${GREY}${VALUE}"
 			if [[ ${VALUE} == ${FIND_COLOR} ]]
 				then
-					echo -e "${YELLOW}The picture ${BOLD}\e[4m${FILE}${RC}${YELLOW} mostly contain the white color.\nRemove it? (y/n)${RC}"
+					echo -e "${INFO} The picture \e[4m${FILE}${INFO}  mostly contain the white color.\nRemove it? (y/n)"
 					read REMOVE
 						case ${REMOVE} in
 							y|Y)
-								rm ${PIC_FOLDER}/${FILE} && echo -e "${GREEN}Picture ${FILE} removed!${RC}" || echo -e "${RED}Something went wrong!"
+								rm ${PIC_FOLDER}/${FILE} && echo -e "${GOOD}Picture ${FILE} removed!" || echo -e "${WARN} Something went wrong!"
 								;;
 							n|N)
-								echo -e "${YELLOW}Skipping this file...${RC}"
+								echo -e "${INFO} Skipping this file..."
 								;;
 							*)
 								exit 1

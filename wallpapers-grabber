@@ -9,11 +9,15 @@
 ## - Downloads images from more sites.
 ## - Get the page number before shuf and download. (*1)
 
-RC="\e[0m"
-GREEN="\e[32m"
-YELLOW="\e[33m"
-RED="\e[31m"
+## Set colors.
 BOLD="\e[1m"
+GREEN="\e[32m"
+RED="\e[31m"
+BLUE="\e[34m"
+
+WARN="${RED}${BOLD} [-]${RC}"
+INFO="${BLUE}${BOLD} [*]${RC}"
+GOOD="${GREEN}${BOLD} [+]${RC}"
 
 REQUIREMENTS="curl jq notify-send"
 
@@ -44,7 +48,7 @@ WALLHAVEN_REQUEST()
 
 OPEN_FILE_MANAGER()
 {
-	echo -e "${YELLOW}Open the wallpaper directory? (N/y)${RC}"
+	echo -e "${YELLOW}Open the wallpaper directory? (N/y)"
 	read -s -t 3 OPEN
 		if [[ ${OPEN} == "y" ]]
 			then
@@ -53,7 +57,7 @@ OPEN_FILE_MANAGER()
 						then
 							exit 0
 						else
-							echo "${RED}Unable to find a file manager!\nExiting...${RC}"
+							echo "${WARN} Unable to find a file manager!\nExiting..."
 							exit 1
 					fi
 			else
@@ -66,20 +70,20 @@ if [[ ${1} && ${2} ]]
 		which ${REQUIREMENTS} > /dev/null
 		if [[ ${?} -eq "0" ]]
 			then
-				echo -e " 🔎 ${YELLOW}Searching for ${QUERY} wallpapers...${RC}"
+				echo -e " 🔎 ${YELLOW}Searching for ${QUERY} wallpapers..."
 				WALLHAVEN_REQUEST
 					if [[ ${?} -ne "0" ]]
 						then
-							echo -e "${RED}Page not found...${RC}"
+							echo -e "${WARN} Page not found..."
 						else
 							notify-send " ✅ Wallpapers downloads done! "
 							OPEN_FILE_MANAGER
 					fi
 
 			else
-				echo -e "${RED}To run this program, you need the following packages installed: ${BOLD}${REQUIREMENTS}\nExiting...${RC}"
+				echo -e "${WARN} To run this program, you need the following packages installed: ${REQUIREMENTS}\nExiting..."
 				exit 1
 		fi
 	else
-		echo -e "${RED}Please, provides a topics for your images (e.g. Cars)\nExiting..."
+		echo -e "${WARN} Please, provides a topics for your images (e.g. Cars)\nExiting..."
 fi
