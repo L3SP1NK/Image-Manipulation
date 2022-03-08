@@ -1,2 +1,2 @@
-# Wallpapers-Management
-⚠️ THESE SCRIPTS ARE PERSONAL AND FREQUENTLY UPDATED/BROKEN⚠️
+## Image Manipulation
+Bash script to accomplish various image/video manipulation

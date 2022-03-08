@@ -1,0 +1,36 @@
+#!/bin/bash
+## Combine multiple video in one with ffmpeg.
+## For examples, see "https://ma.ttias.be/use-ffmpeg-combine-multiple-videos/".
+
+## Set colors.
+RC="\e[0m"
+BOLD="\e[1m"
+GREEN="\e[32m"
+RED="\e[31m"
+BLUE="\e[34m"
+
+WARN="${RED}${BOLD} [-] ${RC}"
+INFO="${BLUE}${BOLD} [*] ${RC}"
+GOOD="${GREEN}${BOLD} [+] ${RC}"
+
+if ! which ffmpeg > /dev/null
+	then
+		echo -e "${WARN}ffmpeg is not installed!"
+		exit 1
+	else
+		if [[ ${1} && ${2} ]]
+			then
+				echo -e "${INFO}Starting video compilation (this might take some time)..."
+				## Combine video supplied in the files list (concat), remove sound (-an) and change resolution (scale).
+				ffmpeg -an -f concat -i ${1} -vf scale=1920x1080 ${2}
+				if [[ ${?} -eq "0" ]]
+					then
+						echo -e "${GOOD}Video compilation finished!"
+					else
+						echo -e "${WARN}Something went wrong!"
+				fi
+			else
+				echo -e "${WARN}Please, submit a video list and the destination file."
+				exit 1
+		fi
+fi
