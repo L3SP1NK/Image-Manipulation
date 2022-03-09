@@ -18,7 +18,7 @@ if [[ ${1} ]]
 	then
 		PIC_FOLDER=${1}
 	else
-		echo -e "${WARN} Please, specify a folder containing pictures!"
+		echo -e "${WARN}Please, specify a folder containing pictures!"
 		exit 1
 fi
 
@@ -33,17 +33,17 @@ for FILE in $(ls ${PIC_FOLDER})
 		| sort -nr \
 		| head -n 1 \
 		| awk -F'[()]' '{print $2}')
-		echo -e "${INFO} ${PIC_FOLDER}/${FILE}: ${GREY}${VALUE}"
+		echo -e "${INFO}${PIC_FOLDER}/${FILE}: ${GREY}${VALUE}"
 			if [[ ${VALUE} == ${FIND_COLOR} ]]
 				then
-					echo -e "${INFO} The picture \e[4m${FILE}${INFO}  mostly contain the white color.\nRemove it? (y/n)"
+					echo -e "${INFO}The picture \e[4m${FILE}${INFO}mostly contain the white color.\nRemove it? (y/n)"
 					read REMOVE
 						case ${REMOVE} in
 							y|Y)
-								rm ${PIC_FOLDER}/${FILE} && echo -e "${GOOD}Picture ${FILE} removed!" || echo -e "${WARN} Something went wrong!"
+								rm ${PIC_FOLDER}/${FILE} && echo -e "${GOOD}Picture ${FILE} removed!" || echo -e "${WARN}Something went wrong!"
 								;;
 							n|N)
-								echo -e "${INFO} Skipping this file..."
+								echo -e "${INFO}Skipping this file..."
 								;;
 							*)
 								exit 1
