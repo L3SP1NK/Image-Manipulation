@@ -20,7 +20,8 @@ CHANGE_HUE()
 {
 for NUM in $(seq 99)
 	do
-		ffmpeg -i ${INPUT_FILE} -vf "hue=h=${NUM}000:b=-1:s=1" ${INPUT_FILE}-${NUM}.png
+		ffmpeg -i ${INPUT_FILE} -vf "hue=h=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-h.png
+		ffmpeg -i ${INPUT_FILE} -vf "hue=H=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-H.png
 done
 }
 
