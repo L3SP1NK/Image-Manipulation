@@ -22,7 +22,7 @@ if ! which ffmpeg > /dev/null
 			then
 				echo -e "${INFO}Starting video compilation (this might take some time)..."
 				## Combine video supplied in the files list (concat), remove sound (-an) and change resolution (scale).
-				ffmpeg -an -f concat -i ${1} -vf scale=1920x1080 ${2}
+				ffmpeg -f concat -i ${1} -vf scale=1920x1080 ${2}
 				if [[ ${?} -eq "0" ]]
 					then
 						echo -e "${GOOD}Video compilation finished!"
