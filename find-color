@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Find pictures with a high level of certain color.
-## Highly inspired by "https://www.youtube.com/watch?v=RJEqSIuE0KY"
+
 ## TODO:
 ## - check if the RGB value is "+250" instead of "255".
 ## - "--no-prompt" switch (for removal).

@@ -1,4 +1,6 @@
 #!/bin/bash
+## Change the hue of a set of files.
+
 ## For more information:
 ## http://johnriselvato.com/how-to-edit-the-hue-of-a-video/
 
