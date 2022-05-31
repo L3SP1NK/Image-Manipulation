@@ -4,12 +4,13 @@
 ## Disable ctrl+c
 trap '' 2
 
+notify-send -u low "♻️ Switching wallpaper/theme... "
 ## To run this script, you need:
 ## - wpgtk: sudo pip3 install wpgtk
 ## - wal-telegram: https://github.com/guillaumeboehm/wal-telegram
 
-REQUIREMENTS="wpg wal-telegram"
-IMG_PATH="${HOME}/Pictures/Wallpapers/Heidis_Corner"
+REQUIREMENTS="wpg wal-telegram notify-send"
+IMG_PATH="${HOME}/Pictures/Wallpapers/Raw"
 RANDOM_WAL=$(ls ${IMG_PATH} | shuf | head -n1)
 XFCE_PROPERTY="/backdrop/screen0/monitorHDMI-1/workspace0/last-image"
 
@@ -52,10 +53,39 @@ wpg \
 wpg \
 	--sat ${RANDOM_WAL} 0.25
 
-## 4. Set the theme.
+## 4. Add saturation to the themes.
+wpg \
+	--brt ${RANDOM_WAL} 10
+
+## 5. Set the theme.
 wpg \
 	-s ${RANDOM_WAL} \
 
-## 5. Set the telegram theme.
+## 6. Set the telegram theme.
 ## (Restart telegram to see the changes.)
 wal-telegram -w -g
+
+## 7. Restart telegram
+if pidof Telegram>/dev/null
+	then
+		killall Telegram
+		[[ -f /opt/Telegram/Telegram ]] && /opt/Telegram/Telegram&disown
+fi
+
+#[[ -f ${HOME}/.Xresources ]] && xrdb -merge -load ${HOME}/.Xresources
+wpg --preview
+
+## 8. Restart Xfce component
+#if pidof xfwm4>/dev/null
+#	then
+#		xfwm4 --replace&
+#		disown
+#fi
+
+#if pidof xfwm4>/dev/null
+#	then
+#		xfce4-panel --replace&
+#		disown
+#fi
+
+notify-send -u low "✅ Wallpaper/theme successfully changed! "
