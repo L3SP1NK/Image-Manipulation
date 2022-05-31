@@ -1,0 +1,33 @@
+#!/bin/bash
+## Delete the whitest images in a given folder.
+## Highly inspired by "https://youtu.be/RJEqSIuE0KY"
+
+REQUIREMENTS='awk convert sort head sxiv'
+if ! which ${REQUIREMENTS}>/dev/null
+	then
+		echo "To run this script, you need: ${REQUIREMENTS}"
+		exit 1
+fi
+
+if [[ ${1} ]]
+	then
+		IMG_PATH="${1}"
+	else
+		echo 'Please, specify the directory containing the images!'
+		exit 1
+fi
+
+for IMG in $(ls ${IMG_PATH}/*)
+	do echo "→ ${IMG}..."
+## Is it pure white?
+#		IMG_PRED_COLOR="$(convert ${IMG} -colorspace RGB -format %c histogram:info:- | sort -nr | head -n 1 | awk -F '[()]' '{print $2}'| cut -d ',' -f 1|cut -d '.' -f 1)"
+#		if [[ ${IMG_PRED_COLOR} -gt '255,255,255' ]]
+
+## Is is too light?
+		IMG_PRED_COLOR="$(convert ${IMG} -colorspace RGB -format %c histogram:info:- | sort -nr | head -n 1 | awk -F '[()]' '{print $2}'| cut -d ',' -f 1|cut -d '.' -f 1)"
+		if [[ ${IMG_PRED_COLOR} -gt '250' ]]
+			then
+				echo '\e[31m× The image is mostly white, deleting!'
+				trash ${IMG}
+		fi
+done

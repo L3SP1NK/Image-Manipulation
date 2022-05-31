@@ -1,0 +1,61 @@
+#!/bin/bash
+## Set a random wallpapers and apply a corresponding theme.
+
+## Disable ctrl+c
+trap '' 2
+
+## To run this script, you need:
+## - wpgtk: sudo pip3 install wpgtk
+## - wal-telegram: https://github.com/guillaumeboehm/wal-telegram
+
+REQUIREMENTS="wpg wal-telegram"
+IMG_PATH="${HOME}/Pictures/Wallpapers/Heidis_Corner"
+RANDOM_WAL=$(ls ${IMG_PATH} | shuf | head -n1)
+XFCE_PROPERTY="/backdrop/screen0/monitorHDMI-1/workspace0/last-image"
+
+if ! pidof xfce4-session>/dev/null
+	then
+		echo -e "Xfce4 not running!"
+		exit 1
+fi
+
+if ! which ${REQUIREMENTS}>/dev/null
+	then
+		echo -e "To run me, you'll need: ${REQUIREMENTS}"
+		exit 1
+fi
+
+if [[ ! -d ${IMG_PATH} ]]
+	then
+		echo -e "${IMG_PATH} does not exist."
+		exit 1
+fi
+
+## If the wallpaper dosen't change, see:
+## https://www.friendlyskies.net/notebook/how-to-change-xfce-wallpaper-from-the-command-line-or-terminal
+xfconf-query \
+	-c xfce4-desktop \
+	-p ${XFCE_PROPERTY} \
+	-s ${IMG_PATH}/${RANDOM_WAL}
+
+## Run this command to reinstall the templates.
+#wpg-install.sh -otgirIpbdBq > /dev/null
+
+## 1. Add the random wallpaper to the wpg theme set.
+wpg \
+	-a ${IMG_PATH}/${RANDOM_WAL}
+
+## 2. Auto adjust the theme.
+	-A ${RANDOM_WAL} \
+
+## 3. Add saturation to the themes.
+wpg \
+	--sat ${RANDOM_WAL} 0.25
+
+## 4. Set the theme.
+wpg \
+	-s ${RANDOM_WAL} \
+
+## 5. Set the telegram theme.
+## (Restart telegram to see the changes.)
+wal-telegram -w -g

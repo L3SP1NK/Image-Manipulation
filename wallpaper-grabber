@@ -28,7 +28,7 @@ SORT_OPTIONS="relevance" ## valid options are: "date_added" "relevance" "random"
 QUERY="${1}"
 PAGE=$(shuf -i 1-1626 | head -n1) ## Numbers of pages to search.
 ## Turn categories on(1) or off(0).
-CATEGORY="100" ## 100/101/111*/... (general/anime/people).
+CATEGORY="001" ## 100/101/111*/... (general/anime/people).
 ## Turn purities on(1) or off(0) NSFW requires a valid API key.
 PURITY="100" ##100/110/111/... (sfw/sketchy/nsfw).
 
