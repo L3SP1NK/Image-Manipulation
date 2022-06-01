@@ -10,7 +10,7 @@ notify-send -u low "♻️ Switching wallpaper/theme... "
 ## - wal-telegram: https://github.com/guillaumeboehm/wal-telegram
 
 REQUIREMENTS="wpg wal-telegram notify-send"
-IMG_PATH="${HOME}/Pictures/Wallpapers/Raw"
+IMG_PATH="${HOME}/Pictures/Wallpapers/Heidis_Corner"
 RANDOM_WAL=$(ls ${IMG_PATH} | shuf | head -n1)
 XFCE_PROPERTY="/backdrop/screen0/monitorHDMI-1/workspace0/last-image"
 
