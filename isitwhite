@@ -1,5 +1,5 @@
 #!/bin/bash
-## Delete the whitest images in a given folder.
+## Delete the brightest images in a given folder.
 ## Highly inspired by "https://youtu.be/RJEqSIuE0KY"
 
 REQUIREMENTS='awk convert sort head sxiv'
