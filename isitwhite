@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Delete the brightest images in a given folder.
 ## Highly inspired by "https://youtu.be/RJEqSIuE0KY"
 

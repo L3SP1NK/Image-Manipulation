@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Combine multiple video in one with ffmpeg.
 
 ## For examples, see "https://ma.ttias.be/use-ffmpeg-combine-multiple-videos/".

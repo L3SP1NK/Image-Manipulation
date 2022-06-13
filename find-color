@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Find pictures with a high level of certain color.
 
 ## TODO:

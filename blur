@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Blur images background in bulk (lossy).
 
 BASE_IMAGES_PATH=${1}

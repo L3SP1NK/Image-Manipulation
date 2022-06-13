@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Download wallpapers from:
 ## - https://wallhaven.cc
 ## See the wallhaven API documentation "https://wallhaven.cc/help/api"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## Set a random wallpapers and apply a corresponding theme.
 
 ## Disable ctrl+c
