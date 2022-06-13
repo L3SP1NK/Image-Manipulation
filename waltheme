@@ -15,58 +15,58 @@ WALLPAPER=$(sxiv -t -f -o ${IMG_PATH})
 XFCE_PROPERTY="/backdrop/screen0/monitorHDMI-1/workspace0/last-image"
 
 if ! pidof xfce4-session>/dev/null
-	then
-		echo "Xfce4 not running!"
-		exit 1
+    then
+        echo "Xfce4 not running!"
+        exit 1
 fi
 
 if ! which ${REQUIREMENTS}>/dev/null
-	then
-		echo "To run me, you'll need: ${REQUIREMENTS}"
-		exit 1
+    then
+        echo "To run me, you'll need: ${REQUIREMENTS}"
+        exit 1
 fi
 
 if [[ ! -d ${IMG_PATH} ]]
-	then
-		echo "${IMG_PATH} does not exist."
-		exit 1
+    then
+        echo "${IMG_PATH} does not exist."
+        exit 1
 fi
 
 if [[ ! ${WALLPAPER} ]]
-	then
-		echo "Please, select a wallpaper!"
-		exit 1
+    then
+        echo "Please, select a wallpaper!"
+        exit 1
 fi
 
 ## If the wallpaper dosen't change, see:
 ## https://www.friendlyskies.net/notebook/how-to-change-xfce-wallpaper-from-the-command-line-or-terminal
 xfconf-query \
-	-c xfce4-desktop \
-	-p ${XFCE_PROPERTY} \
-	-s ${WALLPAPER}
+    -c xfce4-desktop \
+    -p ${XFCE_PROPERTY} \
+    -s ${WALLPAPER}
 
 ## Run this command to reinstall the templates.
 #wpg-install.sh -otgirIpbdBq > /dev/null
 
 ## 1. Add the random wallpaper to the wpg theme set.
 wpg \
-	-a ${WALLPAPER}
+    -a ${WALLPAPER}
 
 ## 2. Auto adjust the theme.
 wpg \
-	-A ${WALLPAPER}
+    -A ${WALLPAPER}
 
 ## 3. Add saturation to the themes.
 wpg \
-	--sat ${WALLPAPER} 0.25
+    --sat ${WALLPAPER} 0.25
 
 ## 4. Add saturation to the themes.
 wpg \
-	--brt ${WALLPAPER} 10
+    --brt ${WALLPAPER} 10
 
 ## 5. Set the theme.
 wpg \
-	-s ${WALLPAPER} \
+    -s ${WALLPAPER} \
 
 ## 6. Set the telegram theme.
 ## (Restart telegram to see the changes.)
@@ -74,9 +74,9 @@ wal-telegram -w -g
 
 ## 7. Restart telegram
 if pidof Telegram>/dev/null
-	then
-		killall Telegram
-		[[ -f /opt/Telegram/Telegram ]] && /opt/Telegram/Telegram&disown
+    then
+        killall Telegram
+        [[ -f /opt/Telegram/Telegram ]] && /opt/Telegram/Telegram&disown
 fi
 
 #[[ -f ${HOME}/.Xresources ]] && xrdb -merge -load ${HOME}/.Xresources
@@ -84,15 +84,15 @@ wpg --preview
 
 ## 8. Restart Xfce component
 #if pidof xfwm4>/dev/null
-#	then
-#		xfwm4 --replace&
-#		disown
+#    then
+#        xfwm4 --replace&
+#        disown
 #fi
 
 #if pidof xfwm4>/dev/null
-#	then
-#		xfce4-panel --replace&
-#		disown
+#    then
+#        xfce4-panel --replace&
+#        disown
 #fi
 
 notify-send -u low "✅ Wallpaper/theme successfully changed! "

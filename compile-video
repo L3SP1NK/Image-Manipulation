@@ -15,23 +15,23 @@ INFO="${BLUE}${BOLD} [*] ${RC}"
 GOOD="${GREEN}${BOLD} [+] ${RC}"
 
 if ! which ffmpeg > /dev/null
-	then
-		echo -e "${WARN}ffmpeg is not installed!"
-		exit 1
-	else
-		if [[ ${1} && ${2} ]]
-			then
-				echo -e "${INFO}Starting video compilation (this might take some time)..."
-				## Combine video supplied in the files list (concat), remove sound (-an) and change resolution (scale).
-				ffmpeg -f concat -i ${1} -vf scale=1920x1080 ${2}
-				if [[ ${?} -eq "0" ]]
-					then
-						echo -e "${GOOD}Video compilation finished!"
-					else
-						echo -e "${WARN}Something went wrong!"
-				fi
-			else
-				echo -e "${WARN}Please, submit a video list and the destination file."
-				exit 1
-		fi
+    then
+        echo -e "${WARN}ffmpeg is not installed!"
+        exit 1
+    else
+        if [[ ${1} && ${2} ]]
+            then
+                echo -e "${INFO}Starting video compilation (this might take some time)..."
+                ## Combine video supplied in the files list (concat), remove sound (-an) and change resolution (scale).
+                ffmpeg -f concat -i ${1} -vf scale=1920x1080 ${2}
+                if [[ ${?} -eq "0" ]]
+                    then
+                        echo -e "${GOOD}Video compilation finished!"
+                    else
+                        echo -e "${WARN}Something went wrong!"
+                fi
+            else
+                echo -e "${WARN}Please, submit a video list and the destination file."
+                exit 1
+        fi
 fi

@@ -5,33 +5,33 @@
 ## http://johnriselvato.com/how-to-edit-the-hue-of-a-video/
 
 if [[ ${1} ]]
-	then
-		if [[ -f ${1} ]]
-			then
-				INPUT_FILE=${1}
-			else
-				echo "${1} not found, or not a file."
-				exit 1
-		fi
-	else
-		echo "Specify the file to modify."
-		exit 1
+    then
+        if [[ -f ${1} ]]
+            then
+                INPUT_FILE=${1}
+            else
+                echo "${1} not found, or not a file."
+                exit 1
+        fi
+    else
+        echo "Specify the file to modify."
+        exit 1
 fi
 
 CHANGE_HUE()
 {
 for NUM in $(seq 9)
-	do
-		ffmpeg -i ${INPUT_FILE} -vf "hue=h=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-h.png
-		ffmpeg -i ${INPUT_FILE} -vf "hue=H=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-H.png
+    do
+        ffmpeg -i ${INPUT_FILE} -vf "hue=h=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-h.png
+        ffmpeg -i ${INPUT_FILE} -vf "hue=H=${NUM}000:b=-1:s=1" ./${INPUT_FILE}-${NUM}-H.png
 done
 }
 
 
 if ! ffmpeg > /dev/null
-	then
-		CHANGE_HUE
-	else
-		echo "ffmpeg not found!"
-		exit 1
+    then
+        CHANGE_HUE
+    else
+        echo "ffmpeg not found!"
+        exit 1
 fi

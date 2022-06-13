@@ -38,41 +38,41 @@ WALLHAVEN_URL="https://wallhaven.cc/api/v1/search?q=${QUERY}&categories=${CATEGO
 
 wallhavenRequest()
 {
-	curl -sf ${WALLHAVEN_URL}\
-	| jq '.' | grep -Eoh 'https:\/\/w\.wallhaven.cc\/full\/.*(jpg|png)\b'\
-	| xargs -l wget -nc -nv -P ${WALLPAPERS_DIR}
+    curl -sf ${WALLHAVEN_URL}\
+    | jq '.' | grep -Eoh 'https:\/\/w\.wallhaven.cc\/full\/.*(jpg|png)\b'\
+    | xargs -l wget -nc -nv -P ${WALLPAPERS_DIR}
 }
 
 if [[ ${1} ]]
-	then
-		QUERY="${1}"
-	else
-		echo -e "${WARN}Usage: wallpaper-grabber <topic> <directory>"
-		exit 1
+    then
+        QUERY="${1}"
+    else
+        echo -e "${WARN}Usage: wallpaper-grabber <topic> <directory>"
+        exit 1
 fi
 
 if [[ ${2} ]]
-	then
-		WALLPAPERS_DIR="${2}"
-		mkdir -p ${WALLPAPERS_DIR}
-	else
-		echo -e "${WARN}Usage: wallpaper-grabber <topic> <directory>"
-		exit 1
+    then
+        WALLPAPERS_DIR="${2}"
+        mkdir -p ${WALLPAPERS_DIR}
+    else
+        echo -e "${WARN}Usage: wallpaper-grabber <topic> <directory>"
+        exit 1
 fi
 
 if ! which ${REQUIREMENTS}>/dev/null
-	then
-		echo -e "${WARN}To run this program, you need the following packages installed: ${REQUIREMENTS}"
-		exit 1
+    then
+        echo -e "${WARN}To run this program, you need the following packages installed: ${REQUIREMENTS}"
+        exit 1
 fi
 
 echo -e " 🔎 ${INFO}Searching for ${QUERY} wallpapers..."
 wallhavenRequest
 
 if [[ ${?} -eq '0' ]]
-	then
-		echo -e "${GOOD}Wallpapers downloads finished!"
-	else
-		echo -e "${WARN}Page not found..."
-		exit 1
+    then
+        echo -e "${GOOD}Wallpapers downloads finished!"
+    else
+        echo -e "${WARN}Page not found..."
+        exit 1
 fi
