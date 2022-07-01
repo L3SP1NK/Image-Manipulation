@@ -10,7 +10,7 @@ notify-send -u low "♻️ Switching wallpaper/theme... "
 ## - wal-telegram: https://github.com/guillaumeboehm/wal-telegram
 
 REQUIREMENTS="wpg wal-telegram notify-send"
-IMG_PATH="${HOME}/Pictures/Wallpapers/Pexels/Girl"
+IMG_PATH="${HOME}/Pictures/Wallpapers/Heidis_Corner/"
 XFCE_PROPERTY="/backdrop/screen0/monitorHDMI-1/workspace0/last-image"
 
 if [[ ${1} == '-r' ]]
