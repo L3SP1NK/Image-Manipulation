@@ -23,7 +23,7 @@ for IMG in $(ls ${IMG_PATH}/*)
 #        IMG_PRED_COLOR="$(convert ${IMG} -colorspace RGB -format %c histogram:info:- | sort -nr | head -n 1 | awk -F '[()]' '{print $2}'| cut -d ',' -f 1|cut -d '.' -f 1)"
 #        if [[ ${IMG_PRED_COLOR} -gt '255,255,255' ]]
 
-## Is is too light?
+## Is is too bright?
         IMG_PRED_COLOR="$(convert ${IMG} -colorspace RGB -format %c histogram:info:- | sort -nr | head -n 1 | awk -F '[()]' '{print $2}'| cut -d ',' -f 1|cut -d '.' -f 1)"
         if [[ ${IMG_PRED_COLOR} -gt '250' ]]
             then
